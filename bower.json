@@ -1,0 +1,32 @@
+{
+  "name": "myproject",
+  "version": "0.0.0",
+  "description": "Demo tutorial youtube",
+  "main": "index.html",
+  "moduleType": [
+    "amd"
+  ],
+  "keywords": [
+    "polymer",
+    "web-components"
+  ],
+  "authors": [
+    "HDias"
+  ],
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "polymer": "Polymer/polymer#^0.5",
+    "core-ajax": "Polymer/core-ajax#0.5",
+    "core-scaffold": "Polymer/core-scaffold#0.5",
+    "core-menu": "Polymer/core-menu#0.5",
+    "google-map": "GoogleWebComponents/google-map#master",
+    "core-icon": "Polymer/core-icon#0.5"
+  }
+}
