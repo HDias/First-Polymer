@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8"/>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+        <meta name="apple-mobile-web-app-capable" content="yes"/>
+        <meta name="mobile-web-app-capable" content="yes"/>
+
+        <script src="bower_components/webcomponentsjs/webcomponents.js"></script>
+
+        <link rel="import" href="elements-v12.html">
+        <style>
+            body {
+                font-family: sans-serif;
+            }
+            core-list .row {
+                height: 80px;
+                padding: 16px;
+            }
+            core-list .avatar {
+                width: 40px;
+                height: 40px;
+                border-radius: 50%;
+                margin-right: 16px;
+                background-color: #00BCD4;
+            }
+        </style>
+    </head>
+    <body fullbleed fit layout vertical>
+
+        <template is="auto-binding" id="app">
+            <core-list data="{{ data }}" flex>
+                <template>
+                    <div class="row" layout horizontal center>
+                        <core-image class="avatar"
+                                src="{{ model.avatar }}"
+                                preload
+                                sizing="cover"
+                                data-index="{{index}}">
+
+                        </core-image>
+                        <div data-index="{{ index }}">{{ model.name }}</div>
+                    </div>
+                </template>
+            </core-list>
+        </template>
+
+        <script src="bower_components/Faker/build/build/faker.js"></script>
+        <script>
+            var app = document.querySelector('#app');
+            app.data = generateContacts();
+
+            function generateContacts(){
+                var data = [];
+                for (var i = 0; i < 1000; i++ ) {
+                    data.push({
+                        name: faker.name.findName(),
+                        avatar: faker.internet.avatar()
+                    });
+                }
+                return data;
+            }
+        </script>
+    </body>
+</html>

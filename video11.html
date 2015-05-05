@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <meta name="apple-mobile-web-app-capable" content="yes"/>
+    <meta name="mobile-web-app-capable" content="yes"/>
+
+    <script src="bower_components/webcomponentsjs/webcomponents.js"></script>
+
+    <link rel="import" href="elements.html">
+    <link rel="import" href="elements-two.html">
+    <style>
+        body {
+            font-family: sans-serif;
+        }
+        [main] {
+            background-color: #f9f9f9;
+        }
+        [drawer] {
+            background-color: #ffffff;
+        }
+    </style>
+</head>
+<body fullbleed layout vertical>
+<template is="auto-binding" id="tmpl">
+    <core-drawer-panel id="drawerPanel">
+        <core-header-panel drawer>
+            <core-toolbar>Menu</core-toolbar>
+            <more-route-selector>
+                <core-menu>
+                    <core-item label="Home" route="home">
+                        <a href="{{ urlFor('home') }}"></a>
+                    </core-item>
+                    <core-item label="Users" route="users">
+                        <a href="{{ urlFor('users') }}"></a>
+                    </core-item>
+                    <core-item label="Contact" route="contact">
+                        <a href="{{ urlFor('contact') }}"></a>
+                    </core-item>
+                </core-menu>
+            </more-route-selector>
+
+        </core-header-panel>
+
+        <core-header-panel main>
+            <core-toolbar>
+                <core-icon-button core-drawer-toggle icon="menu"></core-icon-button>
+                <div flex>{{ appTitle }}</div>
+            </core-toolbar>
+            <main>
+                <more-route-selector selectedParams="{{ params }}">
+                    <core-pages>
+                        <section route="home">
+                            <h1>Home</h1>
+                            <div>Home Content</div>
+                        </section>
+                        <section route="users">
+                            <h1>Users</h1>
+                            <div>Users Content</div>
+                            <a href="{{ urlFor('user-info', {name: 'Horecio'}) }}">
+                                Horecio's Section
+                            </a>
+                        </section>
+                        <section route="user-info">
+                            <h1>User: {{ params.name }}</h1>
+                            <div>This is {{ params.name }}'s section</div>
+                        </section>
+                        <section route="contact">
+                            <h1>Contact</h1>
+                            <div>Contact Content</div>
+                        </section>
+                    </core-pages>
+                </more-route-selector>
+            </main>
+        </core-header-panel>
+    </core-drawer-panel>
+</template>
+<!-- Video 10 - Routing 101 -->
+<script src="bower_components/page.js/page.js"></script>
+<!-- Video 8 The Awesome Power of Auto-Binding Templates -->
+<script>
+    var tmpl = document.querySelector('#tmpl');
+    tmpl.appTitle = 'Hello Users';
+    tmpl.route = 'home'; //Seta home como página inicial
+
+    // Video 10 - Routing 101
+    // Define Routes
+    page('/', home);
+    page('/portfolio', portfolio);
+    page('/contact', contact);
+
+    // Configure
+    page({ hashbang: true });
+
+    function home(){
+        tmpl.route = 'home';
+    }
+    function portfolio(){
+        tmpl.route = 'portfolio';
+    }
+    function contact(){
+        tmpl.route = 'contact';
+    }
+</script>
+</body>
+</html>
